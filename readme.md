@@ -1,10 +1,3 @@
-Since I cannot directly provide a file, I will give you the complete, ready-to-copy **markdown code** for the `README.md` file.
-
-Simply **copy the entire block below** and paste it into a file named `README.md` in the root of your project.
-
------
-
-markdown
 # 💬 Chat Lite
 
 **Chat Lite** is a modern, real-time chat application designed for instant and engaging communication. Built on a **Node.js, Express, MongoDB, and Socket.IO** stack, it provides a seamless and secure platform for users to connect through private or group conversations.
@@ -104,27 +97,6 @@ Start the server using one of the following commands:
     
 
 The application will now be running at: 👉 **`http://localhost:3000`**
-
------
-
-## 📂 Project Structure
-
-A clean, modular structure for easy navigation and development:
-
-
-chat-lite/
-├─ src/
-│  ├─ routes/         # Express route definitions
-│  ├─ views/          # EJS templates (frontend views)
-│  ├─ controllers/    # Request handlers/business logic
-│  ├─ middlewares/    # Custom middleware (auth, error handling, etc.)
-│  ├─ models/         # Mongoose schemas (Conversation, Message, User)
-│  ├─ utilites/       # General helper functions and utilities
-│  ├─ public/         # Static assets (CSS, JS, images, etc.)
-│  └─ app.js          # Main server entry file
-├─ .env                # Environment variables configuration
-├─ render.yaml         # Render deployment configuration
-└─ package.json
 
 -----
 
