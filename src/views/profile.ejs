@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+<div id="profile-edit-section" class="page">
+  <div id="signup-form-container">
+    <h2>Edit Profile</h2>
+    <form
+      id="update-user-form"
+      action="#"
+      method="post"
+      enctype="multipart/form-data"
+      class="card"
+    >
+      <input type="hidden" name="currentUserId" value="<%= user.id %>"/>
+      <div class="profile-avatar">
+        <img src="./uploads/avatars/<%= user.avatar ?? 'avatar-placeholder.png' %>" alt="avatar">
+        <input type="file" name="avatar" />
+        <button type="button" class="change-profile-avatar">Change</button>
+      </div>
+      <div class="input-group">
+        <label>Full name</label>
+        <input type="text" placeholder="enter name" name="name" value="<%= user.name %>"/>
+        <p class="error name-error"></p>
+      </div>
+      <div class="input-group">
+        <label>Email</label>
+        <input type="text" placeholder="enter email" name="email" value="<%= user.email %>"/>
+        <p class="error email-error"></p>
+      </div>
+
+      <div class="input-group">
+        <label>Phone</label>
+        <input type="text" placeholder="enter mobile" name="phone" value="<%= user.phone %>"/>
+        <p class="error phone-error"></p>
+      </div>
+
+      <div class="input-group">
+        <label>Current Password</label>
+        <input
+          type="password"
+          placeholder="enter password"
+          name="currentPassword"
+        />
+        <p class="error password-error"></p>
+      </div>
+      <div class="input-group">
+        <label>New Password</label>
+        <input
+          type="password"
+          placeholder="enter password"
+          name="newPassword"
+        />
+        <p class="error password-error"></p>
+      </div>
+      <div class="form-actions">
+        <input type="submit" value="Update" class="btn" />
+      </div>
+      <p class="success-status"></p>
+      <p class="error common-error"></p>
+    </form>
+    <div class="delete-actions">
+        <p>Want to remove your account permanently?</p>
+        <a id="delete-profile" class="btn simple-danger" href="#" data-user-id="deleteUser(<%= user.id %>)">Delete</a>
+      </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

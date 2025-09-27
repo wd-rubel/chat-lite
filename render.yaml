@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: chat-lite
+    env: node
+    plan: free           # Change to starter/standard for production
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_NAME
+        value: Chat App
+      - key: PORT
+        value: 3000
+      - key: MONGO_CONNECTION_STRING
+        sync: false      # Set in Render Dashboard
+      - key: COOKIE_SECRET
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRY
+        value: 86400000
+      - key: COOKIE_NAME
+        value: rbl-chat-app

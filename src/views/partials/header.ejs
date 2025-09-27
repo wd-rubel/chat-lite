@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="MD Rubel Islam" />
+    <meta name="owner" content="MD Rubel Islam" />
+    <title><%= title %></title>
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/stylesheets/style.min.css" />
+    <script src="/js/sweetalert2@11.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- HEADER -->
+       <% if(loggedInUser && loggedInUser.id) { %>
+        <header>
+          <div class="container">
+            <div class="navbar">
+              <div class="site-brand">
+                <div class="logo">CL</div>
+                <div>
+                  <div class="brand-name">ChatLight</div>
+                  <div class="brand-tag">Chat App</div>
+                </div>
+              </div>
+
+              <input type="checkbox" id="menu-toggle" />
+              <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+              <div class="overlay"></div>
+              <ul class="nav-links">
+                <li><a href="/users">Pepoples</a></li>
+                <% if(loggedInUser && loggedInUser.id) { %>
+                <li><a href="/inbox">Inbox</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/" onclick="logout(event)">Logout</a></li>
+                <% }else{ %>
+                <li><a href="/">Login</a></li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        </header>
+        <script>
+          const logoutSwal = (message) => {
+            Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            }).fire({
+              icon: "info",
+              title: "Logging out...",
+              text: message,
+            });
+          };
+
+          function logout(e) {
+            e.preventDefault();
+            logoutSwal("You are being logged out");
+            fetch("/logout", { method: "DELETE" }).then(() => {
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 2000);
+            });
+          }
+        </script>
+        <% } %>
+      <div class="container">

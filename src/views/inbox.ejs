@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+<div id="chat-app">
+  <div class="chat-col-left">
+    <div id="search-container">
+      <input type="text" placeholder="Search" />
+      <ul class="user-search-results user-search-results-sidebar"></ul>
+    </div>
+    <div id="conversation-list">
+      <% if (data && data.length > 0) { %> <%
+      data.forEach(function(conversation) { %> <% const currentUserId =
+      loggedInUser.id.toString(); const other = conversation.participants.find(
+      (p) => p.id.toString() !== currentUserId ); %>
+      <div
+        class="conversation"
+        data-id="<%= conversation._id %>"
+        data-name="<%= other.name %>"
+      >
+        <img
+          src="./uploads/avatars/<%= other && other.avatar ? other.avatar : 'avatar-placeholder.png' %>"
+          alt="<%= other ? other.name : 'User' %>"
+        />
+
+        <div class="title-text"><%= other ? other.name : 'Unknown' %></div>
+      </div>
+      <% }) %> <% } else { %>
+      <p class="text-center">No conversations yet.</p>
+      <% } %>
+    </div>
+    <div class="new-message-container">
+      <a href="#" id="add-user-conversation">+</a>
+    </div>
+  </div>
+  <div class="chat-col-right">
+    <div id="chat-head">
+      <button type="button" class="back-btn">
+        <img src="./images/back.svg" alt="back-btn-icon" />
+      </button>
+      <div id="chat-title">
+        <span></span>
+        <button type="button" class="delete-btn"><img src="./images/trash.png" alt="Delete Conversation" /></button>
+      </div>
+    </div>
+
+    <div id="chat-message-list">
+      <!-- Messages will be loaded here dynamically -->
+    </div>
+    <div id="attachments-placeholder">
+
+    </div>
+    <form id="chat-form" enctype="multipart/form-data" method="post">
+      <img
+        src="./images/attachment.png"
+        alt="Add Attachment"
+        class="add-attachment"
+      />
+      <input type="hidden" name="currentUserId" value="<%= loggedInUser.id %>"/>
+      <input type="hidden" name="receiverId" />
+      <input type="hidden" name="receiverName" />
+      <input type="hidden" name="receiverAvatar" />
+      <input type="hidden" name="conversationId" />
+      <input type="file" name="attachments" multiple class="attachments" />
+      <input
+        type="text"
+        name="content"
+        placeholder="Type a message"
+        class="text-content"
+      />
+    </form>
+  </div>
+</div>
+<script
+  src="https://cdn.socket.io/4.8.1/socket.io.min.js"
+  integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+  crossorigin="anonymous"
+></script>
+
+
+<%- include('partials/add-user-conversation.ejs') %> <%-
+include('partials/footer') %>

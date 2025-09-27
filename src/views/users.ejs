@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+ <!-- USERS -->
+  <section id="users" class="page card">
+    <h2>Users</h2>
+    <div class="users-grid">
+      <% users.forEach(user => { %>
+      <div class="user-card card">
+        <div class="user-info">
+        
+            <img src="/uploads/avatars/<%= user.avatar ?? 'avatar-placeholder.png' %>" class="avatar"/>
+           
+          <div>
+            <div class="name"><%= user.name %></div>
+            <div class="small"><%= user.email %></div>
+          </div>
+        </div>
+        <div class="user-actions">
+          <% if(loggedInUser&& user._id != loggedInUser.id) { %>
+            <a class="btn small add-to-conversation" href="#" data-id="<%= user._id %>">Message</a>
+          <% } %>
+          
+          <a class="btn small ghost" href="/profile/<%= user.id %>">Profile</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </section>
+<%- include('partials/footer') %>

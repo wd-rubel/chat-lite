@@ -1,0 +1,123 @@
+<%- include('partials/header') %>
+<div id="login-section" class="page">
+  <div class="row">
+    <div class="col-md-6 col-12" id="left-column">
+      <div id="login-form-container">
+        <div class="form-header">
+          <div class="site-brand">
+            <div class="logo">CL</div>
+          </div>
+          <h1>Login</h1>
+        </div>
+
+        
+        <form method="post" action="/" class="card">
+          <div class="input-group">
+            <label>Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="enter mobile or email"
+              class="<%= errors.username ? 'input-error' : '' %>"
+              id="username"
+              autocomplete="off"
+              autocapitalize="off"
+              value="<%= data.username ? data.username : '' %>"
+            />
+            <% if(errors.username) { %>
+            <p class="error show"><%= errors.username.msg %></p>
+            <% } %>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="enter password"
+              class="<%= errors.password ? 'input-error' : '' %>"
+              id="password"
+              autocomplete="off"
+              autocapitalize="off"
+            />
+            <% if(errors.password) { %>
+            <p class="error show"><%= errors.password.msg %></p>
+            <% } %>
+          </div>
+
+          <% if(errors.common) { %>
+          <p class="error show"><%= errors.common.msg %></p>
+          <% } %>
+          <div class="form-actions">
+            <input type="submit" value="Login" class="btn" />
+            <div class="small">
+              Don't have an account?
+              <a href="#" class="link" id="show-signup-form">Sign up</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="signup-form-container" class="hidden">
+        <div class="form-header">
+          <div class="site-brand">
+            <div class="logo">CL</div>
+          </div>
+          <h1>Create Account</h1>
+        </div>
+        <form
+          id="add-user-form"
+          action="/users"
+          method="post"
+          enctype="multipart/form-data"
+          class="card"
+        >
+          <div class="input-group">
+            <label>Full name</label>
+            <input type="text" placeholder="enter name" name="name" />
+            <p class="error name-error"></p>
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="text" placeholder="enter email" name="email" />
+            <p class="error email-error"></p>
+          </div>
+
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="text" placeholder="enter mobile" name="phone" />
+            <p class="error phone-error"></p>
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="enter password"
+              name="password"
+            />
+            <p class="error password-error"></p>
+          </div>
+
+          <div class="input-group">
+            <label>Profile Picture</label>
+            <input type="file" name="avatar" />
+            <p class="error avatar-error"></p>
+          </div>
+          <div class="form-actions">
+            <input type="submit" value="Create" class="btn" />
+            <div class="small">
+              Already have an account?
+              <a href="/" class="link" id="show-login-form">Sign in</a>
+            </div>
+          </div>
+          <p class="success-status"></p>
+          <p class="error common-error"></p>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6 col-12" id="right-column">
+      <img src="/images/hero-image.png" alt="login" />
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,127 @@
+<div class="modal-wrapper" id="add-user-modal">
+  <div class="modal card">
+    <a href="#" onclick="closeModal()" class="modal-close"><span class="close-icon">+</span></a>
+    <div class="modal-title">
+      <h2>Create Account</h2>
+    </div>
+    <div class="modal-body">
+      <form
+        id="add-user-form"
+        action="/users"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="input-group">
+          <label>Full name</label>
+          <input type="text" placeholder="enter name" name="name" />
+          <p class="error name-error"></p>
+        </div>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="text" placeholder="enter email" name="email" />
+          <p class="error email-error"></p>
+        </div>
+
+        <div class="input-group">
+          <label>Phone</label>
+          <input type="text" placeholder="enter mobile" name="phone" />
+          <p class="error phone-error"></p>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="enter password" name="password" />
+          <p class="error password-error"></p>
+        </div>
+
+        <div class="input-group">
+          <label>Profile Picture</label>
+          <input type="file" name="avatar" />
+          <p class="error avatar-error"></p>
+        </div>
+        <div class="form-actions">
+          <input type="submit" value="Create" class="btn"/>
+          <div class="small">
+            Already have an account? <a href="/" class="link">Sign in</a>
+          </div>
+        </div>
+        <p class="success-status"></p>
+        <p class="error common-error"></p>
+        
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+  const modal = document.querySelector("#add-user-modal");
+  const form = document.querySelector("#add-user-form");
+
+  // success message by toastify
+  let successToast = () => {
+    Toastify({
+      text: "User created successfully",
+      duration: 3000,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+    }).showToast();
+  };
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+  function openModal() {
+    modal.style.display = "block";
+  }
+
+  form.onsubmit = async (e) => {
+    console.log('form submitted');
+    
+    e.preventDefault();
+
+    document.querySelectorAll(".error").forEach((el) => {
+      el.innerText = "";
+      el.style.display = "none";
+    });
+    const form = document.querySelector("#add-user-form");
+    const formData = new FormData(form);
+
+    let response = await fetch("/users", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('data', data);
+        
+        if (data.errors) {
+          Object.keys(data.errors).forEach((key) => {
+            let errorPlaceholder = document.querySelector(`.${key}-error`);
+            errorPlaceholder.innerText = data.errors[key].msg;
+            errorPlaceholder.style.display = "block";
+          });
+        } else {
+          // sent success toast message
+          successToast();
+          closeModal();
+          document.querySelectorAll(".error").forEach((el) => {
+            el.style.display = "none";
+          });
+
+          // reload after 1 second
+          setTimeout(() => {
+            //window.location.reload();
+          }, 2000);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+</script>

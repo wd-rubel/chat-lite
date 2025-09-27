@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+<div id="public-profile-section" class="page">
+  <div class="profile-container card">
+    <div class="profile-avatar">
+      <img src="/uploads/avatars/<%= user.avatar ?? 'avatar-placeholder.png' %>" alt="<%= user.name %>">
+    </div>
+
+    <div class="profile-info">
+      <h2 class="profile-name"><%= user.name %></h2>
+      <p class="profile-email"><i class="fa fa-envelope"></i> <%= user.email %></p>
+      <% if (user.phone) { %>
+        <p class="profile-phone"><i class="fa fa-phone"></i> <%= user.phone %></p>
+      <% } %>
+
+      <!-- Optional: join date if you store createdAt -->
+      <% if (user.createdAt) { %>
+        <p class="profile-joined">
+          <i class="fa fa-calendar"></i>
+          Joined on <%= new Date(user.createdAt).toLocaleDateString() %>
+        </p>
+      <% } %>
+    </div>
+
+    <% if (currentUser && currentUser.id === user.id) { %>
+      <div class="profile-actions">
+        <a href="/profile" class="btn">Edit Profile</a>
+      </div>
+    <% } %>
+  </div>
+</div>
+<%- include('partials/footer') %>
