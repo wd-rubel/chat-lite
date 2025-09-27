@@ -3,7 +3,7 @@ services:
     name: chat-lite
     env: node
     plan: free           # Change to starter/standard for production
-    branch: main
+    branch: master
     buildCommand: npm install
     startCommand: npm start
     envVars:
