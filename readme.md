@@ -6,16 +6,16 @@
 
 
 ### Home Page
-![Home Page](screenshots/home.png)
+<img src="screenshots/home.png" width="600">
 
 ### Inbox Page
-![Inbox Page](screenshots/inbox.png)
+<img src="screenshots/inbox.png" width="600">
 
 ### Profile Page
-![Profile Page](screenshots/profile.png)
+<img src="screenshots/profile.png" width="600">
 
 ### Users Page
-![Users Page](screenshots/users.png)
+<img src="screenshots/users.png" width="600">
 
 ---
 
