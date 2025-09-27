@@ -1,11 +1,12 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
-  "description": "chat app by wdrubel",
+  "description": "Chat app by wdrubel",
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon app.js",
+    "start": "node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
     "prod": "cross-env NODE_ENV=production node app.js"
   },
   "repository": {
@@ -26,6 +27,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "cross-env": "^10.0.0",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
@@ -38,6 +40,6 @@
     "sweetalert2": "^11.23.0"
   },
   "devDependencies": {
-    "cross-env": "^10.0.0"
+    "nodemon": "^2.0.22"
   }
 }
