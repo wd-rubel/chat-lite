@@ -4,9 +4,18 @@
 
 ## 🌟 Live Demo & Screenshots
 
-[**Placeholder: Add an image or GIF of the application here!**]
 
-* **Live Demo:** [Link to your live demo (optional)]
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Inbox Page
+![Inbox Page](screenshots/inbox.png)
+
+### Profile Page
+![Profile Page](screenshots/profile.png)
+
+### Users Page
+![Users Page](screenshots/users.png)
 
 ---
 
